@@ -24,7 +24,7 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                     ""id"": ""33f346e9-60a8-48ca-a290-1e8b6843a5e1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,SlowTap""
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Jump"",

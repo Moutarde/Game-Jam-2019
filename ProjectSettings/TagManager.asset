@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Player
+  - Suspect
+  - Terrain
   - 
   - 
   - 
@@ -38,6 +38,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Terrain
+    uniqueID: 711430293
+    locked: 0
+  - name: Suspect
+    uniqueID: 2614345771
+    locked: 0
+  - name: Player
+    uniqueID: 3502052449
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
