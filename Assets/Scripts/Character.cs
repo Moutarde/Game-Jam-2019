@@ -83,12 +83,4 @@ public class Character : MonoBehaviour
         m_headAccessory = _headAccessory;
         m_headAccessoryAnchor.GetComponent<SpriteRenderer>().sprite = m_headAccessory.m_sprite;
     }
-
-    private SimpleItem m_bodyAccessory;
-    public GameObject m_bodyAccessoryAnchor;
-    public void AssignBodyAccessory(SimpleItem _bodyAccessory)
-    {
-        m_bodyAccessory = _bodyAccessory;
-        m_bodyAccessoryAnchor.GetComponent<SpriteRenderer>().sprite = m_bodyAccessory.m_sprite;
-    }
 }

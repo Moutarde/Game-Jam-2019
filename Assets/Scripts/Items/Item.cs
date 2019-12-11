@@ -13,8 +13,7 @@ public class Item : ScriptableObject
         FacialHair,
         Hair,
         FaceAccessory,
-        HeadAccessory,
-        BodyAccessory
+        HeadAccessory
     };
 
     public ItemType m_itemType;
