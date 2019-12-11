@@ -4,36 +4,36 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private ComplexItem m_top;
+    private TopItem m_top;
     public GameObject m_topAnchor0;
     public GameObject m_topAnchor1;
     public GameObject m_topAnchor2;
     public GameObject m_topAnchor3;
     public GameObject m_topAnchor4;
-    public void AssignTop(ComplexItem _top)
+    public void AssignTop(TopItem _top)
     {
         m_top = _top;
         m_topAnchor0.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite0;
-        m_topAnchor1.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite1;
+        /*m_topAnchor1.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite1;
         m_topAnchor2.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite2;
         m_topAnchor3.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite3;
-        m_topAnchor4.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite4;
+        m_topAnchor4.GetComponent<SpriteRenderer>().sprite = m_top.m_sprite4;*/
     }
 
-    private ComplexItem m_bottom;
+    private BottomItem m_bottom;
     public GameObject m_bottomAnchor0;
     public GameObject m_bottomAnchor1;
     public GameObject m_bottomAnchor2;
     public GameObject m_bottomAnchor3;
     public GameObject m_bottomAnchor4;
-    public void AssignBottom(ComplexItem _bottom)
+    public void AssignBottom(BottomItem _bottom)
     {
         m_bottom = _bottom;
         m_bottomAnchor0.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite0;
         m_bottomAnchor1.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite1;
-        m_bottomAnchor2.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite2;
+        /*m_bottomAnchor2.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite2;
         m_bottomAnchor3.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite3;
-        m_bottomAnchor4.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite4;
+        m_bottomAnchor4.GetComponent<SpriteRenderer>().sprite = m_bottom.m_sprite4;*/
     }
 
     private SimpleItem m_head;
