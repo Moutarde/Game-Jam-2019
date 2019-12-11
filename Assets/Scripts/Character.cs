@@ -52,14 +52,6 @@ public class Character : MonoBehaviour
         m_faceAnchor.GetComponent<SpriteRenderer>().sprite = m_face.m_sprite;
     }
 
-    private SimpleItem m_facialHair;
-    public GameObject m_facialHairAnchor;
-    public void AssignFacialHair(SimpleItem _facialHair)
-    {
-        m_facialHair = _facialHair;
-        m_facialHairAnchor.GetComponent<SpriteRenderer>().sprite = m_facialHair.m_sprite;
-    }
-
     private SimpleItem m_hair;
     public GameObject m_hairAnchor;
     public void AssignHair(SimpleItem _hair)

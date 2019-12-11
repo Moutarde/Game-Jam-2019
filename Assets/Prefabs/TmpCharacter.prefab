@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 3952422794900778578}
   - component: {fileID: 1793821847019062271}
   m_Layer: 0
-  m_Name: HairFace
+  m_Name: FaceAccessory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -460,11 +460,9 @@ MonoBehaviour:
   m_bottomAnchor4: {fileID: 0}
   m_headAnchor: {fileID: 3341207315760559864}
   m_faceAnchor: {fileID: 0}
-  m_facialHairAnchor: {fileID: 1872492354855641555}
   m_hairAnchor: {fileID: 2709334695599923248}
-  m_faceAccessoryAnchor: {fileID: 0}
+  m_faceAccessoryAnchor: {fileID: 1872492354855641555}
   m_headAccessoryAnchor: {fileID: 0}
-  m_bodyAccessoryAnchor: {fileID: 0}
 --- !u!1 &5037629584235944336
 GameObject:
   m_ObjectHideFlags: 0

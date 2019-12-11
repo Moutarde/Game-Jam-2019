@@ -34,10 +34,10 @@ public class CharactersSpawner : MonoBehaviour
         SimpleItem hair = (SimpleItem)hairList[hairIndex];
         newCharacter.GetComponent<Character>().AssignHair(hair);
 
-        List<Item> facialHairList = m_itemsDatabase.GetItems(Item.ItemType.FacialHair);
-        int facialHairIndex = Random.Range(0, facialHairList.Count);
-        SimpleItem facialHair = (SimpleItem)facialHairList[facialHairIndex];
-        newCharacter.GetComponent<Character>().AssignFacialHair(facialHair);
+        List<Item> faceAccessoryList = m_itemsDatabase.GetItems(Item.ItemType.FaceAccessory);
+        int faceAccessoryIndex = Random.Range(0, faceAccessoryList.Count);
+        SimpleItem faceAccessory = (SimpleItem)faceAccessoryList[faceAccessoryIndex];
+        newCharacter.GetComponent<Character>().AssignFaceAccessory(faceAccessory);
     }
 
     private void SpawnCharacters(int _charactersCount)

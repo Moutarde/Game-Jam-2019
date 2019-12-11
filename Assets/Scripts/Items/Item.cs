@@ -10,7 +10,6 @@ public class Item : ScriptableObject
         Bottom,
         Head,
         Face,
-        FacialHair,
         Hair,
         FaceAccessory,
         HeadAccessory

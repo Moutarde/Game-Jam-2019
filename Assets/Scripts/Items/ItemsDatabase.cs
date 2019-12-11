@@ -60,6 +60,6 @@ public class ItemsDatabase
         FillDatabaseWithBottomItems("Bottom");
         FillDatabaseWithSimpleItems(Item.ItemType.Head, "Head");
         FillDatabaseWithSimpleItems(Item.ItemType.Hair, "Hair");
-        FillDatabaseWithSimpleItems(Item.ItemType.FacialHair, "HairFace");
+        FillDatabaseWithSimpleItems(Item.ItemType.FaceAccessory, "FaceAccessory");
     }
 }
