@@ -27,4 +27,5 @@ public class ComplexItem : Item
     public Sprite m_sprite1;
     public Sprite m_sprite2;
     public Sprite m_sprite3;
+    public Sprite m_sprite4;
 }
