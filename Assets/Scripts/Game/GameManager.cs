@@ -114,11 +114,11 @@ public class GameManager : MonoBehaviour
         foreach (PlayerController p in m_players)
         {
             p.Reset();
-            m_scores[p.Slot].SetText(p.Score.ToString());
+            m_scores[p.Slot].SetText("Player " + (p.Slot + 1) + ": " + p.Score.ToString());
         }
 
-        m_charactersSpawner.SpawnCharacters(30);
-        m_clueManager.StartRound();
+        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(30);
+        m_clueManager.StartRound(clues);
 
         m_gameStarted = true;
     }
@@ -128,8 +128,8 @@ public class GameManager : MonoBehaviour
         m_pressStartObject.SetActive(false);
         m_nextRoundObject.SetActive(false);
 
-        m_charactersSpawner.SpawnCharacters(30);
-        m_clueManager.StartRound();
+        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(30);
+        m_clueManager.StartRound(clues);
 
         m_waitingForNextRound = false;
     }
@@ -169,7 +169,7 @@ public class GameManager : MonoBehaviour
             player.AddPoints(-m_clueManager.GetCurrentClueScore());
         }
 
-        m_scores[player.Slot].SetText(player.Score.ToString());
+        m_scores[player.Slot].SetText("Player " + (player.Slot + 1) + ": " + player.Score.ToString());
     }
 
 }
