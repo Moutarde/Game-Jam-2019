@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 229c54ca8c23ec247abfaa1e794acc7e, type: 3}
+  m_Name: Top1
+  m_EditorClassIdentifier: 
+  m_itemType: 0
+  m_clues: []
+  m_trunkSprite: {fileID: 21300000, guid: 7ccea961aca4db647b48d6d74cbd819d, type: 3}
+  m_topLsprite: {fileID: 21300000, guid: 8b6cca57c128bc2428490f227dd0f187, type: 3}
+  m_topRsprite: {fileID: 21300000, guid: 9b9a7dcbe668f05499674b4b7fc8f912, type: 3}
+  m_botLsprite: {fileID: 21300000, guid: 4fcba6497824ecd43983197b15b21cbc, type: 3}
+  m_botRsprite: {fileID: 21300000, guid: 79937a8b83830ef4d88f94eb48a21ba8, type: 3}
