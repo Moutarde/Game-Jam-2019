@@ -20,7 +20,7 @@ TagManager:
   - 
   - Player
   - Suspect
-  - Terrain
+  - BG
   - SuspectHitBox
   - Walls
   - Obstacles

@@ -48,19 +48,17 @@ public class ClueManager : MonoBehaviour
         }
     }
 
-    public void StartRound()
+    public void StartRound(List<ItemClue> clues)
     {
-        m_startTime = Time.time;
-        m_started = true;
-    }
-
-    public void GenerateClues()
-    {
-        // TODO
+        int i = 0;
         foreach (Clue c in m_clues)
         {
-            c.SetText("YOLO");
+            ItemClue clueDesc = clues[i++];
+            c.SetValue(clueDesc.m_text, clueDesc.m_truthness);
         }
+
+        m_startTime = Time.time;
+        m_started = true;
     }
 
     public int GetCurrentClueScore()
