@@ -8,6 +8,7 @@ TagManager:
   - RightWall
   - TopWall
   - BottomWall
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -20,9 +21,9 @@ TagManager:
   - Player
   - Suspect
   - Terrain
-  - 
-  - 
-  - 
+  - SuspectHitBox
+  - Walls
+  - Obstacles
   - 
   - 
   - 

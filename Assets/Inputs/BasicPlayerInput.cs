@@ -49,6 +49,14 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d5b9c01-9392-4468-8d1c-bf30f3d4cadc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -183,6 +191,28 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94cbfc1e-aefb-46bd-b165-2f7a50a8ebca"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""GamePad"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aae3e549-3a00-4136-a1ac-36e62f300db4"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": ""Press"",
+                    ""processors"": """",
+                    ""groups"": ""MouseInput"",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -223,6 +253,7 @@ public class @SimpleControls : IInputActionCollection, IDisposable
         m_gameplay_Jump = m_gameplay.FindAction("Jump", throwIfNotFound: true);
         m_gameplay_Move = m_gameplay.FindAction("Move", throwIfNotFound: true);
         m_gameplay_Look = m_gameplay.FindAction("Look", throwIfNotFound: true);
+        m_gameplay_Start = m_gameplay.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -276,6 +307,7 @@ public class @SimpleControls : IInputActionCollection, IDisposable
     private readonly InputAction m_gameplay_Jump;
     private readonly InputAction m_gameplay_Move;
     private readonly InputAction m_gameplay_Look;
+    private readonly InputAction m_gameplay_Start;
     public struct GameplayActions
     {
         private @SimpleControls m_Wrapper;
@@ -284,6 +316,7 @@ public class @SimpleControls : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_gameplay_Jump;
         public InputAction @Move => m_Wrapper.m_gameplay_Move;
         public InputAction @Look => m_Wrapper.m_gameplay_Look;
+        public InputAction @Start => m_Wrapper.m_gameplay_Start;
         public InputActionMap Get() { return m_Wrapper.m_gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -305,6 +338,9 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                 @Look.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
+                @Start.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -321,6 +357,9 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -349,5 +388,6 @@ public class @SimpleControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }

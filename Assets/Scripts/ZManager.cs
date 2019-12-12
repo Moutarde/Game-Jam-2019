@@ -12,6 +12,11 @@ public class ZManager : MonoBehaviour
         
     }
 
+    public void RemoveAllCharacters()
+    {
+        m_playersAndObstacles.RemoveAll(obstacle => obstacle.CompareTag("Character"));
+    }
+
     int SortByZ(GameObject _go1, GameObject _go2)
     {
         Vector3 localPosition1 = _go1.transform.localPosition;

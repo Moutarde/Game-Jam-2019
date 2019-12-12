@@ -45,9 +45,11 @@ public class CharactersSpawner : MonoBehaviour
     public float m_xMax;
     public float m_yMin;
     public float m_yMax;
-    public GameObject m_zManager;
+    public ZManager m_zManager;
 
     private ItemsDatabase m_itemsDatabase;
+
+    private List<GameObject> m_characters = new List<GameObject>();
 
     private void SpawnCharacter()
     {
@@ -56,7 +58,6 @@ public class CharactersSpawner : MonoBehaviour
         float randomX = Random.Range(m_xMin, m_xMax);
         float randomY = Random.Range(m_yMin, m_yMax);
         newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
-        m_zManager.GetComponent<ZManager>().m_playersAndObstacles.Add(newCharacter);
 
         List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
         int topIndex = Random.Range(0, topList.Count);
@@ -82,9 +83,12 @@ public class CharactersSpawner : MonoBehaviour
         int faceAccessoryIndex = Random.Range(0, faceAccessoryList.Count);
         SimpleItem faceAccessory = (SimpleItem)faceAccessoryList[faceAccessoryIndex];
         newCharacter.GetComponent<Character>().AssignFaceAccessory(faceAccessory);
+
+        m_characters.Add(newCharacter);
+        m_zManager.m_playersAndObstacles.Add(newCharacter);
     }
 
-    private List<ItemClue> SpawnCharacters(int _charactersCount)
+    public List<ItemClue> SpawnCharacters(int _charactersCount)
     {
         for (int i = 0; i < _charactersCount; ++i)
         {
@@ -114,13 +118,22 @@ public class CharactersSpawner : MonoBehaviour
     {
         m_itemsDatabase = new ItemsDatabase();
         m_itemsDatabase.Init();
-
-        SpawnCharacters(30);
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void Reset()
+    {
+        foreach (GameObject c in m_characters)
+        {
+            Destroy(c);
+        }
+
+        m_characters.Clear();
+        m_zManager.RemoveAllCharacters();
     }
 }
