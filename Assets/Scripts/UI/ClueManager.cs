@@ -12,6 +12,9 @@ public class ClueManager : MonoBehaviour
     [SerializeField]
     private int[] m_timings = new int[s_nbClues];
 
+    [SerializeField]
+    private int[] m_points = new int[s_nbClues];
+
     int m_currentClue = 0;
     bool m_started = false;
     float m_startTime = 0f;
@@ -63,7 +66,6 @@ public class ClueManager : MonoBehaviour
 
     public int GetCurrentClueScore()
     {
-        // TODO
-        return 10;
+        return m_points[m_currentClue-1];
     }
 }
