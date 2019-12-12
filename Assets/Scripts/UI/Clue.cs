@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class Clue : MonoBehaviour
 {
     TextMeshProUGUI m_textMesh;
