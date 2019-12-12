@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
             _fire = false;
             GetComponent<SpriteRenderer>().color = Color.grey;
         }
+
+        CheckHover();
     }
 
     // Called when the device is disconnected
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
             _fireTime = Time.time;
             GetComponent<SpriteRenderer>().color = Color.red;
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Suspect"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("SuspectHitBox"));
             if (hit.collider != null)
             {
                 SuspectController suspectController = hit.collider.GetComponent<SuspectController>();
@@ -78,9 +80,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnPressStart(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.HandleStartPressed();
+    }
+
+    public void Reset()
+    {
+        Score = 0;
+        // TODO: reset position
+    }
+
     public void AddPoints(int value)
     {
         Score += value;
+    }
+
+    private void CheckHover()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("SuspectHitBox"));
+        if (hit.collider != null)
+        {
+            transform.localScale = new Vector3(0.8f, 0.8f);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1f, 1f);
+        }
     }
 
 }

@@ -9,7 +9,7 @@ public class PlayerScore : MonoBehaviour
     TextMeshProUGUI m_textMesh;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_textMesh = GetComponent<TextMeshProUGUI>();
     }

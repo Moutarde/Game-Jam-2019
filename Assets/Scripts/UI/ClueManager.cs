@@ -13,26 +13,45 @@ public class ClueManager : MonoBehaviour
     private int[] m_timings = new int[s_nbClues];
 
     int m_currentClue = 0;
+    bool m_started = false;
+    float m_startTime = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
+        Reset();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!m_started)
+            return;
+
+        for (int i = m_currentClue; i < s_nbClues; ++i)
+        {
+            if (m_currentClue == i && Time.time - m_startTime > m_timings[i])
+            {
+                m_clues[m_currentClue++].ShowClue(true);
+            }
+        }
+    }
+
+    public void Reset()
+    {
+        m_currentClue = 0;
+        m_started = false;
+
         foreach (Clue c in m_clues)
         {
             c.ShowClue(false);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartRound()
     {
-        for (int i = m_currentClue; i < s_nbClues; ++i)
-        {
-            if (m_currentClue == i && Time.time > m_timings[i])
-            {
-                m_clues[m_currentClue++].ShowClue(true);
-            }
-        }
+        m_startTime = Time.time;
+        m_started = true;
     }
 
     public void GenerateClues()
