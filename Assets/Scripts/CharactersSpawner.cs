@@ -11,13 +11,9 @@ public class CharactersSpawner : MonoBehaviour
         public Node m_node1;
         public Node m_node2;
 
-        public Node(List<Item.ItemType> _availableTypes, int _depth)
+        public Node(Item.ItemType _itemType, Item _item0, Item _item1, int _depth, List<Item.ItemType> _availableTypes)
         {
-            int randomTypeIndex = Random.Range(0, _availableTypes.Count);
-            m_itemType = _availableTypes[randomTypeIndex];
-            _availableTypes.RemoveAt(randomTypeIndex);
-
-            if (m_depth > 3)
+            /*if (m_depth > 3)
             {
                 m_node1 = null;
                 m_node2 = null;
@@ -35,6 +31,39 @@ public class CharactersSpawner : MonoBehaviour
                     m_node1 = null;
                     m_node2 = new Node(_availableTypes, m_depth + 1);
                 }
+            }
+
+            int randomTypeIndex = Random.Range(0, _availableTypes.Count);
+            m_itemType = _availableTypes[randomTypeIndex];
+            _availableTypes.RemoveAt(randomTypeIndex);
+            */
+            
+        }
+
+        void CreateRoot(List<Item.ItemType> _availableTypes, ItemsDatabase _itemsDatabase)
+        {
+            m_itemType = Item.ItemType.Top; // random, do not use it
+            m_depth = 0;
+
+            int randomTypeIndex = Random.Range(0, _availableTypes.Count);
+            Item.ItemType childrenItemType = _availableTypes[randomTypeIndex];
+            _availableTypes.RemoveAt(randomTypeIndex);
+
+            List<Item> items = _itemsDatabase.GetItems(childrenItemType);
+            int itemIndex = Random.Range(0, items.Count - 1);
+            int item0 = itemIndex;
+            int item1 = itemIndex + 1;
+
+            int randomNodeIndex = Random.Range(0, 2);
+            if (randomNodeIndex == 0)
+            {
+                m_node1 = new Node(childrenItemType, items[item0], items[item1], m_depth + 1, _availableTypes);
+                m_node2 = null;
+            }
+            else
+            {
+                m_node1 = null;
+                m_node2 = new Node(childrenItemType, items[item0], items[item1], m_depth + 1, _availableTypes);
             }
         }
     }
@@ -105,7 +134,7 @@ public class CharactersSpawner : MonoBehaviour
     private void CreateTree()
     {
         List<Item.ItemType> availableTypes = new List<Item.ItemType> { Item.ItemType.Top, Item.ItemType.Bottom, Item.ItemType.Head, Item.ItemType.Face, Item.ItemType.Hair, Item.ItemType.FaceAccessory, Item.ItemType.HeadAccessory };
-        Node root = new Node(availableTypes, 0);
+        //Node root = new Node(availableTypes, 0);
 
     }
 
