@@ -56,10 +56,11 @@ public class ItemsDatabase
     {
         m_database = new Dictionary<Item.ItemType, List<Item>>();
 
-        FillDatabaseWithTopItems("Top");
-        FillDatabaseWithBottomItems("Bottom");
-        FillDatabaseWithSimpleItems(Item.ItemType.Head, "Head");
-        FillDatabaseWithSimpleItems(Item.ItemType.Hair, "Hair");
-        FillDatabaseWithSimpleItems(Item.ItemType.FaceAccessory, "FaceAccessory");
+        FillDatabaseWithTopItems("Tops");
+        FillDatabaseWithBottomItems("Bottoms");
+        FillDatabaseWithSimpleItems(Item.ItemType.Head, "Heads");
+        FillDatabaseWithSimpleItems(Item.ItemType.Face, "Faces");
+        FillDatabaseWithSimpleItems(Item.ItemType.HeadAccessory, "HeadAccessories");
+        FillDatabaseWithSimpleItems(Item.ItemType.FaceAccessory, "FaceAccessories");
     }
 }

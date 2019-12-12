@@ -10,10 +10,10 @@ public class Item : ScriptableObject
         Bottom,
         Head,
         Face,
-        Hair,
-        FaceAccessory,
-        HeadAccessory
+        HeadAccessory,
+        FaceAccessory
     };
 
     public ItemType m_itemType;
+    public List<ItemClue> m_clues;
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemClue
 {
     public bool m_truthness; // true if the character to find wear the object described by m_text, false otherwise

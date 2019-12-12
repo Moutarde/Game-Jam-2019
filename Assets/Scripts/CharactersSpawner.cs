@@ -7,63 +7,105 @@ public class CharactersSpawner : MonoBehaviour
     public class Node
     {
         public Item.ItemType m_itemType;
+        public Item m_item;
         public int m_depth;
         public Node m_node1;
         public Node m_node2;
 
-        public Node(Item.ItemType _itemType, Item _item0, Item _item1, int _depth, List<Item.ItemType> _availableTypes)
+        public Node(List<Item.ItemType> _availableTypes, ItemsDatabase _itemsDatabase)
         {
-            /*if (m_depth > 3)
+            m_itemType = Item.ItemType.Top; // random, do not use it
+            m_item = null;
+            m_depth = 0;
+
+            CreateChildrenNodes(_availableTypes, _itemsDatabase);
+        }
+
+        public Node(Item.ItemType _itemType, Item _item, bool _hasChildren, int _depth, List<Item.ItemType> _availableTypes, ItemsDatabase _itemsDatabase)
+        {
+            Debug.Log("depth: " + m_depth);
+            Debug.Log("_availableTypes: " + _availableTypes.Count);
+            if (m_depth > 3)
             {
-                m_node1 = null;
-                m_node2 = null;
+                _hasChildren = false;
+            }
+
+            if (_hasChildren)
+            {
+                m_itemType = _itemType;
+                m_item = _item;
+                m_depth = _depth;
+
+                CreateChildrenNodes(_availableTypes, _itemsDatabase);
             }
             else
             {
-                int randomNodeIndex = Random.Range(0, 2);
-                if (randomNodeIndex == 0)
-                {
-                    m_node1 = new Node(_availableTypes, m_depth + 1);
-                    m_node2 = null;
-                }
-                else
-                {
-                    m_node1 = null;
-                    m_node2 = new Node(_availableTypes, m_depth + 1);
-                }
-            }
-
-            int randomTypeIndex = Random.Range(0, _availableTypes.Count);
-            m_itemType = _availableTypes[randomTypeIndex];
-            _availableTypes.RemoveAt(randomTypeIndex);
-            */
-            
+                m_node1 = null;
+                m_node2 = null;
+            }   
         }
 
-        void CreateRoot(List<Item.ItemType> _availableTypes, ItemsDatabase _itemsDatabase)
+        public void CreateChildrenNodes(List<Item.ItemType> _availableTypes, ItemsDatabase _itemsDatabase)
         {
-            m_itemType = Item.ItemType.Top; // random, do not use it
-            m_depth = 0;
-
             int randomTypeIndex = Random.Range(0, _availableTypes.Count);
             Item.ItemType childrenItemType = _availableTypes[randomTypeIndex];
             _availableTypes.RemoveAt(randomTypeIndex);
 
             List<Item> items = _itemsDatabase.GetItems(childrenItemType);
             int itemIndex = Random.Range(0, items.Count - 1);
-            int item0 = itemIndex;
-            int item1 = itemIndex + 1;
+            int item0 = 0;
+            int item1 = 0;
 
             int randomNodeIndex = Random.Range(0, 2);
             if (randomNodeIndex == 0)
             {
-                m_node1 = new Node(childrenItemType, items[item0], items[item1], m_depth + 1, _availableTypes);
-                m_node2 = null;
+                item0 = itemIndex;
+                item1 = itemIndex + 1;
             }
             else
             {
-                m_node1 = null;
-                m_node2 = new Node(childrenItemType, items[item0], items[item1], m_depth + 1, _availableTypes);
+                item0 = itemIndex + 1;
+                item1 = itemIndex;
+            }
+
+            Debug.Log(childrenItemType);
+            Debug.Log(item0);
+            Debug.Log(items.Count);
+            Debug.Log(m_depth);
+
+            m_node1 = new Node(childrenItemType, items[item0], true, m_depth + 1, _availableTypes, _itemsDatabase);
+            m_node2 = new Node(childrenItemType, items[item1], false, m_depth + 1, _availableTypes, _itemsDatabase);
+        }
+
+        public void DisplayNode()
+        {
+            if (m_depth == 0)
+            {
+                Debug.Log("Root");
+            }
+            else
+            {
+                Debug.Log("Node type " + m_itemType + " item " + m_item);
+            }
+
+            Debug.Log("node 1");
+            if (m_node1 == null)
+            {
+                Debug.Log("null");
+            }
+            else
+            {
+                m_node1.DisplayNode();
+            }
+
+            Debug.Log("node 2");
+            if (m_node2 == null)
+            {
+                Debug.Log("null");
+            }
+            else
+            {
+                m_node2.DisplayNode();
             }
         }
     }
@@ -79,6 +121,46 @@ public class CharactersSpawner : MonoBehaviour
     private ItemsDatabase m_itemsDatabase;
 
     private List<GameObject> m_characters = new List<GameObject>();
+
+    private void AssignItem(Item.ItemType _itemType, GameObject _character)
+    {
+        List<Item> itemsList = m_itemsDatabase.GetItems(_itemType);
+        int itemIndex = Random.Range(0, itemsList.Count);
+        SimpleItem item = (SimpleItem)itemsList[itemIndex];
+        _character.GetComponent<Character>().AssignHead(item);
+    }
+
+    private void AssignHead(Item.ItemType _itemType, GameObject _character)
+    {
+        List<Item> itemsList = m_itemsDatabase.GetItems(_itemType);
+        int itemIndex = Random.Range(0, itemsList.Count);
+        SimpleItem item = (SimpleItem)itemsList[itemIndex];
+        _character.GetComponent<Character>().AssignHead(item);
+    }
+
+    private void AssignFace(Item.ItemType _itemType, GameObject _character)
+    {
+        List<Item> itemsList = m_itemsDatabase.GetItems(_itemType);
+        int itemIndex = Random.Range(0, itemsList.Count);
+        SimpleItem item = (SimpleItem)itemsList[itemIndex];
+        _character.GetComponent<Character>().AssignFace(item);
+    }
+
+    private void AssignHeadAccessory(Item.ItemType _itemType, GameObject _character)
+    {
+        List<Item> itemsList = m_itemsDatabase.GetItems(_itemType);
+        int itemIndex = Random.Range(0, itemsList.Count);
+        SimpleItem item = (SimpleItem)itemsList[itemIndex];
+        _character.GetComponent<Character>().AssignHeadAccessory(item);
+    }
+
+    private void AssignFaceAccessory(Item.ItemType _itemType, GameObject _character)
+    {
+        List<Item> itemsList = m_itemsDatabase.GetItems(_itemType);
+        int itemIndex = Random.Range(0, itemsList.Count);
+        SimpleItem item = (SimpleItem)itemsList[itemIndex];
+        _character.GetComponent<Character>().AssignFaceAccessory(item);
+    }
 
     private void SpawnCharacter()
     {
@@ -98,20 +180,10 @@ public class CharactersSpawner : MonoBehaviour
         BottomItem bottom = (BottomItem)bottomList[bottomIndex];
         newCharacter.GetComponent<Character>().AssignBottom(bottom);
 
-        List<Item> headList = m_itemsDatabase.GetItems(Item.ItemType.Head);
-        int headIndex = Random.Range(0, headList.Count);
-        SimpleItem head = (SimpleItem)headList[headIndex];
-        newCharacter.GetComponent<Character>().AssignHead(head);
-
-        List<Item> hairList = m_itemsDatabase.GetItems(Item.ItemType.Hair);
-        int hairIndex = Random.Range(0, hairList.Count);
-        SimpleItem hair = (SimpleItem)hairList[hairIndex];
-        newCharacter.GetComponent<Character>().AssignHair(hair);
-
-        List<Item> faceAccessoryList = m_itemsDatabase.GetItems(Item.ItemType.FaceAccessory);
-        int faceAccessoryIndex = Random.Range(0, faceAccessoryList.Count);
-        SimpleItem faceAccessory = (SimpleItem)faceAccessoryList[faceAccessoryIndex];
-        newCharacter.GetComponent<Character>().AssignFaceAccessory(faceAccessory);
+        AssignHead(Item.ItemType.Head, newCharacter);
+        AssignFace(Item.ItemType.Face, newCharacter);
+        AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
+        AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
 
         m_characters.Add(newCharacter);
         m_zManager.m_playersAndObstacles.Add(newCharacter);
@@ -137,9 +209,9 @@ public class CharactersSpawner : MonoBehaviour
 
     private void CreateTree()
     {
-        List<Item.ItemType> availableTypes = new List<Item.ItemType> { Item.ItemType.Top, Item.ItemType.Bottom, Item.ItemType.Head, Item.ItemType.Face, Item.ItemType.Hair, Item.ItemType.FaceAccessory, Item.ItemType.HeadAccessory };
-        //Node root = new Node(availableTypes, 0);
-
+        /*List<Item.ItemType> availableTypes = new List<Item.ItemType> { Item.ItemType.Top, Item.ItemType.Bottom, Item.ItemType.Face, Item.ItemType.FaceAccessory, Item.ItemType.HeadAccessory };
+        Node root = new Node(availableTypes, m_itemsDatabase);
+        root.DisplayNode();*/
     }
 
     // Start is called before the first frame update
@@ -147,6 +219,7 @@ public class CharactersSpawner : MonoBehaviour
     {
         m_itemsDatabase = new ItemsDatabase();
         m_itemsDatabase.Init();
+        CreateTree();
     }
 
     // Update is called once per frame

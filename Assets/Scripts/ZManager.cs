@@ -48,7 +48,7 @@ public class ZManager : MonoBehaviour
             m_playersAndObstacles.Sort(SortByZ);
         }
 
-        Debug.Log("List");
+        /*Debug.Log("List");
         for (int i = 0; i < m_playersAndObstacles.Count; ++i)
         {
             Vector3 localPosition1 = m_playersAndObstacles[i].transform.localPosition;
@@ -56,7 +56,7 @@ public class ZManager : MonoBehaviour
             Vector3 colliderPosition1 = localPosition1 + new Vector3(colliderOffset1.x, colliderOffset1.y, 0.0f);
             Debug.Log(m_playersAndObstacles[i]);
             Debug.Log(colliderPosition1.y);
-        }
+        }*/
 
         /*float z = -50;
         for (int i = 0; i < m_playersAndObstacles.Count; ++i)
