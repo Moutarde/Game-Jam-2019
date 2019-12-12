@@ -185,6 +185,8 @@ public class CharactersSpawner : MonoBehaviour
         AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
         AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
 
+        newCharacter.GetComponent<Character>().InitOrders();
+
         m_characters.Add(newCharacter);
         m_zManager.m_playersAndObstacles.Add(newCharacter);
     }

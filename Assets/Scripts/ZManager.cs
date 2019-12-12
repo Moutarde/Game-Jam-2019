@@ -30,16 +30,6 @@ public class ZManager : MonoBehaviour
         return colliderPosition1.y.CompareTo(colliderPosition2.y);
     }
 
-    void SetSpritesOrderInLayer(GameObject _gameObject, int _order)
-    {
-        SpriteRenderer[] spriteRenderers = _gameObject.GetComponentsInChildren<SpriteRenderer>();
-
-        for (int i = 0; i < spriteRenderers.Length; ++i)
-        {
-            spriteRenderers[i].sortingOrder = _order;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -67,11 +57,14 @@ public class ZManager : MonoBehaviour
             ++z;
         }*/
 
-        int order = 100;
+        int order = 10000;
         for (int i = 0; i < m_playersAndObstacles.Count; ++i)
         {
-            SetSpritesOrderInLayer(m_playersAndObstacles[i], order);
-            --order;
+            if (m_playersAndObstacles[i].tag == "Character")
+            {
+                m_playersAndObstacles[i].GetComponent<Character>().SetSpritesOrderInLayer(order);
+            }
+            order -= 100;
         }
     }
 }
