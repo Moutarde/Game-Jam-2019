@@ -8,6 +8,9 @@ using UnityEngine.InputSystem.Users;
 [RequireComponent(typeof(PlayerInput), typeof(SpriteRenderer))]
 public class PlayerController : MonoBehaviour
 {
+    public int Slot { get; private set; }
+    public int Score { get; private set; }
+
     [SerializeField]
     private float _speed;
     
@@ -16,6 +19,19 @@ public class PlayerController : MonoBehaviour
     private bool _fire = false;
     private float _fireTime;
 
+
+    void Awake()
+    {
+        int result = GameManager.Instance.RegisterPlayer(this);
+        if (result == -1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Slot = result;
+        }
+    }
 
     void Update()
     {
@@ -31,6 +47,7 @@ public class PlayerController : MonoBehaviour
     // Called when the device is disconnected
     public void DeviceLostEvent(PlayerInput test)
     {
+        GameManager.Instance.UnregisterPlayer(this);
         Destroy(gameObject);
     }
 
@@ -55,13 +72,15 @@ public class PlayerController : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("Suspect"));
             if (hit.collider != null)
             {
-                hit.collider.GetComponent<SuspectController>().OnKilled();
-                Debug.Log("Did Hit: " + hit.collider);
-            }
-            else
-            {
-                Debug.Log("Nothing here");
+                SuspectController suspectController = hit.collider.GetComponent<SuspectController>();
+                GameManager.Instance.HandlePlayerKill(this, suspectController);
             }
         }
     }
+
+    public void AddPoints(int value)
+    {
+        Score += value;
+    }
+
 }

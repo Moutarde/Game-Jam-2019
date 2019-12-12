@@ -21,4 +21,10 @@ public class SuspectController : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = Color.red;
     }
+
+    public bool IsTarget()
+    {
+        //TODO
+        return false;
+    }
 }
