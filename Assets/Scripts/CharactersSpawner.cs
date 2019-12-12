@@ -5,14 +5,20 @@ using UnityEngine;
 public class CharactersSpawner : MonoBehaviour
 {
     public GameObject m_characterPrefab;
+    public float m_xMin;
+    public float m_xMax;
+    public float m_yMin;
+    public float m_yMax;
 
     private ItemsDatabase m_itemsDatabase;
 
-    private void SpawnCharacter(float _xOffset)
+    private void SpawnCharacter()
     {
         GameObject newCharacter = Instantiate(m_characterPrefab);
         newCharacter.transform.parent = transform;
-        newCharacter.transform.localPosition = new Vector3(_xOffset, 0.0f, 0.0f);
+        float randomX = Random.Range(m_xMin, m_xMax);
+        float randomY = Random.Range(m_yMin, m_yMax);
+        newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
 
         List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
         int topIndex = Random.Range(0, topList.Count);
@@ -42,13 +48,9 @@ public class CharactersSpawner : MonoBehaviour
 
     private void SpawnCharacters(int _charactersCount)
     {
-        float offset = 3.0f;
-        float currentOffset = 0.0f;
-
         for (int i = 0; i < _charactersCount; ++i)
         {
-            SpawnCharacter(currentOffset);
-            currentOffset += offset;
+            SpawnCharacter();
         }
     }
 
@@ -59,7 +61,7 @@ public class CharactersSpawner : MonoBehaviour
         m_itemsDatabase = new ItemsDatabase();
         m_itemsDatabase.Init();
 
-        SpawnCharacters(10);
+        SpawnCharacters(30);
     }
 
     // Update is called once per frame

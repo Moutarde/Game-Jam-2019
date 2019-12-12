@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25853310e6b339d45affa5346b47dd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 30
+  m_speed: 10
   m_directionChangeMinDelay: 0.1
   m_directionChangeMaxDelay: 1
 --- !u!1 &5037629584235944336
