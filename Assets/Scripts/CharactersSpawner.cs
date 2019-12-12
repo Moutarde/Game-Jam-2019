@@ -9,6 +9,7 @@ public class CharactersSpawner : MonoBehaviour
     public float m_xMax;
     public float m_yMin;
     public float m_yMax;
+    public GameObject m_zManager;
 
     private ItemsDatabase m_itemsDatabase;
 
@@ -19,6 +20,7 @@ public class CharactersSpawner : MonoBehaviour
         float randomX = Random.Range(m_xMin, m_xMax);
         float randomY = Random.Range(m_yMin, m_yMax);
         newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
+        m_zManager.GetComponent<ZManager>().m_playersAndObstacles.Add(newCharacter);
 
         List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
         int topIndex = Random.Range(0, topList.Count);
