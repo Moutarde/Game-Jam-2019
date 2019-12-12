@@ -43,4 +43,10 @@ public class ClueManager : MonoBehaviour
             c.SetText("YOLO");
         }
     }
+
+    public int GetCurrentClueScore()
+    {
+        // TODO
+        return 10;
+    }
 }

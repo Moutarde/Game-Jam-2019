@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class Clue : MonoBehaviour
+public class PlayerScore : MonoBehaviour
 {
     TextMeshProUGUI m_textMesh;
 
@@ -17,7 +17,7 @@ public class Clue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetText(string value)
@@ -25,7 +25,7 @@ public class Clue : MonoBehaviour
         m_textMesh.text = value;
     }
 
-    public void ShowClue(bool value)
+    public void ShowScore(bool value)
     {
         gameObject.SetActive(value);
     }
