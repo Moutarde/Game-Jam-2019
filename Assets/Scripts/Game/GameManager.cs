@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private PlayerScore[] m_scores = new PlayerScore[s_nbPlayers];
 
+    [SerializeField]
+    private Color[] m_playerColors = new Color[s_nbPlayers];
+
     private List<PlayerController> m_players = new List<PlayerController>();
     private List<int> m_availableSlots = new List<int>();
 
@@ -88,6 +91,10 @@ public class GameManager : MonoBehaviour
         m_availableSlots.RemoveAt(0);
 
         m_scores[slot].ShowScore(true);
+        m_scores[slot].SetColor(m_playerColors[slot]);
+        m_scores[slot].SetText("Player " + (slot + 1) + ": " + player.Score.ToString());
+
+        player.PlayerColor = m_playerColors[slot];
 
         return slot;
     }
