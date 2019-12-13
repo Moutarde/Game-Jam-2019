@@ -4213,7 +4213,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 322.59, y: 50}
+  m_SizeDelta: {x: 400, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1614255538
 MonoBehaviour:
@@ -4234,6 +4234,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 'Press A to join
+
+    Right trigger to shoot
 
     Press start to begin '
   m_isRightToLeft: 0
@@ -4280,7 +4282,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 39
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -4304,12 +4306,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: -54.60744}
   m_textInfo:
     textComponent: {fileID: 1614255538}
-    characterCount: 37
+    characterCount: 60
     spriteCount: 0
-    spaceCount: 8
-    wordCount: 8
+    spaceCount: 12
+    wordCount: 12
     linkCount: 0
-    lineCount: 2
+    lineCount: 3
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -4678,6 +4680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
         type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
       propertyPath: m_MaxPlayerCount
       value: 6
       objectReference: {fileID: 0}
@@ -4685,6 +4692,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NotificationBehavior
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinBehavior
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_Id
+      value: 43e9a774-0a35-4f34-8f15-eb0f93943407
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_Name
+      value: Action
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
+      value: 5723f741-86f5-4978-9028-01e7207943e5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Action
+      value: Action
+      objectReference: {fileID: 0}
+    - target: {fileID: 2416814348247196550, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
+        type: 3}
+      propertyPath: m_JoinAction.m_Action.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Gamepad>/buttonSouth
       objectReference: {fileID: 0}
     - target: {fileID: 2416814348247196551, guid: 7b47ebb9625f60c45ac1f28608ab8c6b,
         type: 3}

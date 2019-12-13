@@ -140,7 +140,7 @@ public class @SimpleControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6296f65b-929d-49bb-8596-922985807e85"",
-                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""GamePad"",
