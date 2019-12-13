@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 {
     public int Slot { get; private set; }
     public int Score { get; private set; }
+    public Color PlayerColor { get; set; }
 
     [SerializeField]
     private float _speed;
@@ -19,9 +20,13 @@ public class PlayerController : MonoBehaviour
     private bool _fire = false;
     private float _fireTime;
 
+    private SpriteRenderer m_spriteRenderer;
+
 
     void Awake()
     {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+
         int result = GameManager.Instance.RegisterPlayer(this);
         if (result == -1)
         {
@@ -31,6 +36,8 @@ public class PlayerController : MonoBehaviour
         {
             Slot = result;
         }
+
+        m_spriteRenderer.color = PlayerColor;
     }
 
     void Update()
@@ -40,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (_fire && Time.time - _fireTime > 0.1)
         {
             _fire = false;
-            GetComponent<SpriteRenderer>().color = Color.grey;
+            m_spriteRenderer.color = PlayerColor;
         }
 
         CheckHover();
@@ -69,7 +76,7 @@ public class PlayerController : MonoBehaviour
         {
             _fire = true;
             _fireTime = Time.time;
-            GetComponent<SpriteRenderer>().color = Color.red;
+            m_spriteRenderer.color = Color.red;
             GetComponent<ShootSoundManager>().PlayShootSound();
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("SuspectHitBox"));

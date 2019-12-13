@@ -29,4 +29,9 @@ public class PlayerScore : MonoBehaviour
     {
         gameObject.SetActive(value);
     }
+
+    public void SetColor(Color color)
+    {
+        m_textMesh.color = color;
+    }
 }
