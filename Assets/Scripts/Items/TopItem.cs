@@ -10,4 +10,9 @@ public class TopItem : Item
     public Sprite m_topRsprite;
     public Sprite m_botLsprite;
     public Sprite m_botRsprite;
+
+    public bool IsSameItem(TopItem _topItem)
+    {
+        return m_trunkSprite == _topItem.m_trunkSprite;
+    }
 }

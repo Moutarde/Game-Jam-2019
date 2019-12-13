@@ -6,4 +6,9 @@ using UnityEngine;
 public class SimpleItem : Item
 {
     public Sprite m_sprite;
+
+    public bool IsSameItem(SimpleItem _simpleItem)
+    {
+        return m_sprite == _simpleItem.m_sprite;
+    }
 }

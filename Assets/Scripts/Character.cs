@@ -133,4 +133,14 @@ public class Character : MonoBehaviour
         m_faceAccessoryAnchor.GetComponent<SpriteRenderer>().sortingOrder = m_faceAccessoryOrder + _order;
     }
 
+    public bool HasSameItems(Character _character)
+    {
+        return m_top.IsSameItem(_character.m_top)
+            && m_bottom.IsSameItem(_character.m_bottom)
+            && m_head.IsSameItem(_character.m_head)
+            && m_face.IsSameItem(_character.m_face)
+            && m_headAccessory.IsSameItem(_character.m_headAccessory)
+            && m_faceAccessory.IsSameItem(_character.m_faceAccessory);
+    }
+
 }
