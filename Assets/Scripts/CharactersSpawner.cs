@@ -6,8 +6,8 @@ public class CharactersSpawner : MonoBehaviour
 {
     public class Constraint
     {
-        Item.ItemType m_itemType;
-        Item m_item;
+        public Item.ItemType m_itemType;
+        public Item m_item;
 
         public Constraint(Item.ItemType _itemType, Item _item)
         {
@@ -286,6 +286,42 @@ public class CharactersSpawner : MonoBehaviour
         m_zManager.m_playersAndObstacles.Add(newCharacter);
     }
 
+    private Item HasConstraint(List<Constraint> _constraints, Item.ItemType _itemType)
+    {
+        for (int i = 0; i < _constraints.Count; ++i)
+        {
+            if (_constraints[i].m_itemType == _itemType)
+            {
+                return _constraints[i].m_item;
+            }
+        }
+        return null;
+    }
+
+    private TopItem HasTopConstraint(List<Constraint> _constraints)
+    {
+        for (int i = 0; i < _constraints.Count; ++i)
+        {
+            if (_constraints[i].m_itemType == Item.ItemType.Top)
+            {
+                return (TopItem)_constraints[i].m_item;
+            }
+        }
+        return null;
+    }
+
+    private BottomItem HasBottomConstraint(List<Constraint> _constraints)
+    {
+        for (int i = 0; i < _constraints.Count; ++i)
+        {
+            if (_constraints[i].m_itemType == Item.ItemType.Bottom)
+            {
+                return (BottomItem)_constraints[i].m_item;
+            }
+        }
+        return null;
+    }
+
     private void SpawnCharacterWithConstraints(List<Constraint> _constraints)
     {
         GameObject newCharacter = Instantiate(m_characterPrefab);
@@ -294,21 +330,72 @@ public class CharactersSpawner : MonoBehaviour
         float randomY = Random.Range(m_yMin, m_yMax);
         newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
 
-        List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
-        int topIndex = Random.Range(0, topList.Count);
-        TopItem top = (TopItem)topList[topIndex];
-        newCharacter.GetComponent<Character>().AssignTop(top);
+        TopItem itemTop = HasTopConstraint(_constraints);
+        if (itemTop == null)
+        {
+            List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
+            int topIndex = Random.Range(0, topList.Count);
+            TopItem top = (TopItem)topList[topIndex];
+            newCharacter.GetComponent<Character>().AssignTop(top);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignTop(itemTop);
+        }
 
-        List<Item> bottomList = m_itemsDatabase.GetItems(Item.ItemType.Bottom);
-        int bottomIndex = Random.Range(0, bottomList.Count);
-        BottomItem bottom = (BottomItem)bottomList[bottomIndex];
-        newCharacter.GetComponent<Character>().AssignBottom(bottom);
+        BottomItem itemBottom = HasBottomConstraint(_constraints);
+        if (itemBottom == null)
+        {
+            List<Item> bottomList = m_itemsDatabase.GetItems(Item.ItemType.Bottom);
+            int bottomIndex = Random.Range(0, bottomList.Count);
+            BottomItem bottom = (BottomItem)bottomList[bottomIndex];
+            newCharacter.GetComponent<Character>().AssignBottom(bottom);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignBottom((BottomItem)itemBottom);
+        }
 
-        AssignHead(Item.ItemType.Head, newCharacter);
-        AssignFace(Item.ItemType.Face, newCharacter);
-        AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
-        AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
+        Item itemHead = HasConstraint(_constraints, Item.ItemType.Head);
+        if (itemHead == null)
+        {
+            AssignHead(Item.ItemType.Head, newCharacter);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignHead((SimpleItem)itemHead);
+        }
 
+        Item itemFace = HasConstraint(_constraints, Item.ItemType.Face);
+        if (itemFace == null)
+        {
+            AssignFace(Item.ItemType.Face, newCharacter);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignFace((SimpleItem)itemFace);
+        }
+
+        Item itemHeadAccessory = HasConstraint(_constraints, Item.ItemType.HeadAccessory);
+        if (itemHeadAccessory == null)
+        {
+            AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignHeadAccessory((SimpleItem)itemHeadAccessory);
+        }
+
+        Item itemFaceAccessory = HasConstraint(_constraints, Item.ItemType.FaceAccessory);
+        if (itemFaceAccessory == null)
+        {
+            AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
+        }
+        else
+        {
+            newCharacter.GetComponent<Character>().AssignFaceAccessory((SimpleItem)itemFaceAccessory);
+        }
+        
         newCharacter.GetComponent<Character>().InitOrders();
 
         m_characters.Add(newCharacter);
@@ -317,9 +404,11 @@ public class CharactersSpawner : MonoBehaviour
 
     public List<ItemClue> SpawnCharacters(int _charactersCount)
     {
-        for (int i = 0; i < _charactersCount; ++i)
+        List<CharactersGroup> charactersGroups = GenerateCharactersGroups();
+
+        for (int i = 0; i < charactersGroups.Count; ++i)
         {
-            SpawnCharacter();
+            SpawnCharactersWithCharactersGroup(charactersGroups[i]);
         }
 
         List<ItemClue> clues = new List<ItemClue>();
@@ -333,34 +422,26 @@ public class CharactersSpawner : MonoBehaviour
         return clues;
     }
 
-    public List<ItemClue> SpawnCharactersWithConstraints(int _charactersCount, List<Constraint> _constraints)
+    public void SpawnCharactersWithCharactersGroup(CharactersGroup _charactersGroup)
     {
-        for (int i = 0; i < _charactersCount; ++i)
+        for (int i = 0; i < _charactersGroup.m_charactersCount; ++i)
         {
-            SpawnCharacterWithConstraints(_constraints);
+            //SpawnCharacter();
+            SpawnCharacterWithConstraints(_charactersGroup.m_constraints);
         }
-
-        List<ItemClue> clues = new List<ItemClue>();
-        clues.Add(new ItemClue(true, "Clue1"));
-        clues.Add(new ItemClue(false, "Clue2"));
-        clues.Add(new ItemClue(true, "Clue3"));
-        clues.Add(new ItemClue(false, "Clue4"));
-        clues.Add(new ItemClue(true, "Clue5"));
-        clues.Add(new ItemClue(false, "Clue6"));
-        clues.Add(new ItemClue(true, "Clue7"));
-        return clues;
     }
 
-    private void CreateTree()
+    private List<CharactersGroup> GenerateCharactersGroups()
     {
         List<Item.ItemType> availableTypes = new List<Item.ItemType> { Item.ItemType.Top, Item.ItemType.Bottom, Item.ItemType.Face, Item.ItemType.FaceAccessory, Item.ItemType.HeadAccessory };
         Node root = new Node(availableTypes, m_itemsDatabase);
         //root.DisplayNode();
         List<CharactersGroup> charactersGroupList = root.CreateCharactersGroup();
-        for (int i = 0; i < charactersGroupList.Count; ++i)
+        /*for (int i = 0; i < charactersGroupList.Count; ++i)
         {
             charactersGroupList[i].Display();
-        }
+        }*/
+        return charactersGroupList;
     }
 
     // Start is called before the first frame update
@@ -368,7 +449,6 @@ public class CharactersSpawner : MonoBehaviour
     {
         m_itemsDatabase = new ItemsDatabase();
         m_itemsDatabase.Init();
-        CreateTree();
     }
 
     // Update is called once per frame
