@@ -29,18 +29,22 @@ public class CharacterMove : MonoBehaviour
         {
             case 0:
                 m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirLeft");
                 break;
 
             case 1:
                 m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
                 break;
 
             case 2:
                 m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
                 break;
 
             case 3:
                 m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
                 break;
         }
 
@@ -51,12 +55,34 @@ public class CharacterMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        bool wasInRightDirection = true;
+        if (m_directionVector.x < 0.0f)
+        {
+            wasInRightDirection = false;
+        }
+
         float xOffset = Random.Range(-0.2f, 0.2f);
         float yOffset = Random.Range(-0.2f, 0.2f);
         m_directionVector = new Vector3(m_directionVector.x + xOffset, m_directionVector.y + yOffset, 0.0f);
         m_directionVector = Vector3.Normalize(m_directionVector);
 
         transform.localPosition = transform.localPosition + m_directionVector * m_speed * Time.deltaTime;
+
+        bool rightDirection = true;
+        if (m_directionVector.x < 0.0f)
+        {
+            rightDirection = false;
+        }
+
+        if (!wasInRightDirection && rightDirection)
+        {
+            GetComponent<Animator>().Play("SetDirRight");
+        }
+        else if (wasInRightDirection && !rightDirection)
+        {
+            GetComponent<Animator>().Play("SetDirLeft");
+        }
+        GetComponent<Animator>().Play("Walk");
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -66,18 +92,22 @@ public class CharacterMove : MonoBehaviour
         if (tag.Equals("LeftWall"))
         {
             m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
+            GetComponent<Animator>().Play("SetDirRight");
         }
         else if (tag.Equals("RightWall"))
         {
             m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
+            GetComponent<Animator>().Play("SetDirLeft");
         }
         else if (tag.Equals("TopWall"))
         {
             m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
+            GetComponent<Animator>().Play("SetDirRight");
         }
         else if (tag.Equals("BottomWall"))
         {
             m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
+            GetComponent<Animator>().Play("SetDirRight");
         }
         else
         {
@@ -95,18 +125,22 @@ public class CharacterMove : MonoBehaviour
             if (-45.0f < angle && angle <= 45.0f)
             {
                 m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirLeft");
             }
             else if (45.0f < angle && angle <= 135.0f)
             {
                 m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
             }
             else if (135.0f < angle || angle <= -135.0)
             {
                 m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
             }
             else if (-135.0f < angle || angle <= -45.0)
             {
                 m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
+                GetComponent<Animator>().Play("SetDirRight");
             }
         }
     }
