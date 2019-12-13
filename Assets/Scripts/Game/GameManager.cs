@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     private static uint s_nbPlayers = 6;
     private static uint s_nbRoundsPerGame = 4;
     private static float s_timeBetweenRounds = 5f;
+    private static int s_nbNPCs = 20;
 
     public static GameManager Instance;
     
@@ -117,7 +118,7 @@ public class GameManager : MonoBehaviour
             m_scores[p.Slot].SetText("Player " + (p.Slot + 1) + ": " + p.Score.ToString());
         }
 
-        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(30);
+        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(s_nbNPCs);
         m_clueManager.StartRound(clues);
 
         m_gameStarted = true;
@@ -128,7 +129,7 @@ public class GameManager : MonoBehaviour
         m_pressStartObject.SetActive(false);
         m_nextRoundObject.SetActive(false);
 
-        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(30);
+        List<ItemClue> clues = m_charactersSpawner.SpawnCharacters(s_nbNPCs);
         m_clueManager.StartRound(clues);
 
         m_waitingForNextRound = false;
