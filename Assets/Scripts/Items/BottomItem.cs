@@ -12,4 +12,9 @@ public class BottomItem : Item
     public Sprite m_bottomLegBotRSprite;
     public Sprite m_shoesLSprite;
     public Sprite m_shoesRSprite;
+
+    public bool IsSameItem(BottomItem _bottomItem)
+    {
+        return m_hipsSprite == _bottomItem.m_hipsSprite;
+    }
 }

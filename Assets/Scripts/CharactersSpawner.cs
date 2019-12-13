@@ -182,18 +182,17 @@ public class CharactersSpawner : MonoBehaviour
             cg1.m_constraints.Add(new Constraint(m_node1.m_node2.m_itemType, m_node1.m_node2.m_item));
 
             cg2.m_constraints.Add(new Constraint(m_node1.m_itemType, m_node1.m_item));
-            cg2.m_constraints.Add(new Constraint(m_node1.m_node2.m_itemType, m_node1.m_node2.m_item));
+            cg2.m_constraints.Add(new Constraint(m_node1.m_node1.m_itemType, m_node1.m_node1.m_item));
             cg2.m_constraints.Add(new Constraint(m_node1.m_node1.m_node2.m_itemType, m_node1.m_node1.m_node2.m_item));
 
             cg3.m_constraints.Add(new Constraint(m_node1.m_itemType, m_node1.m_item));
-            cg3.m_constraints.Add(new Constraint(m_node1.m_node2.m_itemType, m_node1.m_node2.m_item));
-            cg3.m_constraints.Add(new Constraint(m_node1.m_node1.m_node2.m_itemType, m_node1.m_node1.m_node2.m_item));
+            cg3.m_constraints.Add(new Constraint(m_node1.m_node1.m_itemType, m_node1.m_node1.m_item));
+            cg3.m_constraints.Add(new Constraint(m_node1.m_node1.m_node1.m_itemType, m_node1.m_node1.m_node1.m_item));
             cg3.m_constraints.Add(new Constraint(m_node1.m_node1.m_node1.m_node2.m_itemType, m_node1.m_node1.m_node1.m_node2.m_item));
 
             cg4.m_constraints.Add(new Constraint(m_node1.m_itemType, m_node1.m_item));
-            cg4.m_constraints.Add(new Constraint(m_node1.m_node2.m_itemType, m_node1.m_node2.m_item));
-            cg4.m_constraints.Add(new Constraint(m_node1.m_node1.m_node2.m_itemType, m_node1.m_node1.m_node2.m_item));
-            cg4.m_constraints.Add(new Constraint(m_node1.m_node1.m_node1.m_node2.m_itemType, m_node1.m_node1.m_node1.m_node2.m_item));
+            cg4.m_constraints.Add(new Constraint(m_node1.m_node1.m_itemType, m_node1.m_node1.m_item));
+            cg4.m_constraints.Add(new Constraint(m_node1.m_node1.m_node1.m_itemType, m_node1.m_node1.m_node1.m_item));
             cg4.m_constraints.Add(new Constraint(m_node1.m_node1.m_node1.m_node1.m_itemType, m_node1.m_node1.m_node1.m_node1.m_item));
 
             List<CharactersGroup> charactersGroupList = new List<CharactersGroup>();
@@ -284,6 +283,43 @@ public class CharactersSpawner : MonoBehaviour
 
         m_characters.Add(newCharacter);
         m_zManager.m_playersAndObstacles.Add(newCharacter);
+    }
+
+    private void SpawnCharacterV2()
+    {
+        GameObject newCharacter = Instantiate(m_characterPrefab);
+        newCharacter.transform.parent = transform;
+        float randomX = Random.Range(m_xMin, m_xMax);
+        float randomY = Random.Range(m_yMin, m_yMax);
+        newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
+
+        List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
+        int topIndex = Random.Range(0, topList.Count);
+        TopItem top = (TopItem)topList[topIndex];
+        newCharacter.GetComponent<Character>().AssignTop(top);
+
+        List<Item> bottomList = m_itemsDatabase.GetItems(Item.ItemType.Bottom);
+        int bottomIndex = Random.Range(0, bottomList.Count);
+        BottomItem bottom = (BottomItem)bottomList[bottomIndex];
+        newCharacter.GetComponent<Character>().AssignBottom(bottom);
+
+        AssignHead(Item.ItemType.Head, newCharacter);
+        AssignFace(Item.ItemType.Face, newCharacter);
+        AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
+        AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
+
+        newCharacter.GetComponent<Character>().InitOrders();
+
+        if (m_characters.Count > 0 && m_characters[0].GetComponent<Character>().HasSameItems(newCharacter.GetComponent<Character>()))
+        {
+            // same as the bad guy
+            // Debug.Log("Duplicate");
+        }
+        else
+        {
+            m_characters.Add(newCharacter);
+            m_zManager.m_playersAndObstacles.Add(newCharacter);
+        }
     }
 
     private Item HasConstraint(List<Constraint> _constraints, Item.ItemType _itemType)
@@ -404,12 +440,17 @@ public class CharactersSpawner : MonoBehaviour
 
     public List<ItemClue> SpawnCharacters(int _charactersCount)
     {
-        List<CharactersGroup> charactersGroups = GenerateCharactersGroups();
+        while (m_characters.Count < _charactersCount)
+        {
+            SpawnCharacterV2();
+        }
+
+        /*List<CharactersGroup> charactersGroups = GenerateCharactersGroups();
 
         for (int i = 0; i < charactersGroups.Count; ++i)
         {
             SpawnCharactersWithCharactersGroup(charactersGroups[i]);
-        }
+        }*/
 
         List<ItemClue> clues = new List<ItemClue>();
         clues.Add(new ItemClue(true, "Clue1"));
@@ -437,10 +478,10 @@ public class CharactersSpawner : MonoBehaviour
         Node root = new Node(availableTypes, m_itemsDatabase);
         //root.DisplayNode();
         List<CharactersGroup> charactersGroupList = root.CreateCharactersGroup();
-        /*for (int i = 0; i < charactersGroupList.Count; ++i)
+        for (int i = 0; i < charactersGroupList.Count; ++i)
         {
             charactersGroupList[i].Display();
-        }*/
+        }
         return charactersGroupList;
     }
 
