@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
         m_clueManager.StartRound(clues);
 
         m_gameStarted = true;
+
+        GetComponent<AudioSource>().Play();
     }
 
     private void BeginNextRound()
