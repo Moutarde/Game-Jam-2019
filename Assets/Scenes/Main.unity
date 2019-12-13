@@ -1071,7 +1071,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464473734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3, y: 23.03, z: 0}
+  m_LocalPosition: {x: 3.3, y: 6.44, z: 0}
   m_LocalScale: {x: 119.501785, y: 4.044781, z: 36.984554}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1706,7 +1706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747070263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 43.96, y: 4.8, z: 0}
+  m_LocalPosition: {x: 37.57, y: 4.8, z: 0}
   m_LocalScale: {x: 3.8631523, y: 40.44781, z: 36.984554}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2009,7 +2009,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893735932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -43.98, y: 4.2, z: 0}
+  m_LocalPosition: {x: -37.42, y: 4.2, z: 0}
   m_LocalScale: {x: 3.8631523, y: 40.44781, z: 36.984554}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3854,7 +3854,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8841546b0ad55604bb59b6b84b3a56ec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fdbe4c278f075cf46b2f0116ffa8dd3c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4087,35 +4087,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
         type: 3}
-      propertyPath: m_xMin
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
-        type: 3}
-      propertyPath: m_yMin
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
-        type: 3}
-      propertyPath: m_xMax
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
-        type: 3}
-      propertyPath: m_yMax
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
-        type: 3}
       propertyPath: m_zManager
       value: 
       objectReference: {fileID: 969647683}
-    - target: {fileID: 212609519867390405, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
-        type: 3}
-      propertyPath: m_characterPrefab
-      value: 
-      objectReference: {fileID: 4520783612577379507, guid: 56b6850b1fa5a8d488c8414de82eab0e,
-        type: 3}
     - target: {fileID: 212609519867390406, guid: 78a12b0b7c8d4c94aae0aa1c1313885b,
         type: 3}
       propertyPath: m_LocalPosition.x

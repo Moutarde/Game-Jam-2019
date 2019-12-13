@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b870676515c5e8a418aa5d0b2ddb9453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_characterPrefab: {fileID: 4520783612577379507, guid: 487831059dc08a340872eb456f3f8842,
+  m_characterPrefab: {fileID: 4520783612577379507, guid: 56b6850b1fa5a8d488c8414de82eab0e,
     type: 3}
-  m_xMin: -35
-  m_xMax: 35
-  m_yMin: -18
-  m_yMax: 18
+  m_xMin: -33
+  m_xMax: 33
+  m_yMin: -7.7
+  m_yMax: 7.5
+  m_zManager: {fileID: 0}
