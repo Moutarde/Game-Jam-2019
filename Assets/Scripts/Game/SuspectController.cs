@@ -36,7 +36,7 @@ public class SuspectController : MonoBehaviour
         m_spriteRenderer.enabled = true;
         m_boxCollider2D.enabled = false;
 
-        m_mover.m_speed = 0;
+        m_mover.StopMoving();
         m_mover.GetComponent<BoxCollider2D>().enabled = false;
     }
 }

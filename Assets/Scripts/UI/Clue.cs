@@ -4,10 +4,10 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(TextMeshProUGUI))]
 public class Clue : MonoBehaviour
 {
-    TextMeshProUGUI m_textMesh;
+
+    public TextMeshProUGUI m_textMesh;
 
     [SerializeField]
     Sprite m_tickSprite;
@@ -15,12 +15,6 @@ public class Clue : MonoBehaviour
     Sprite m_crossSprite;
     [SerializeField]
     Image m_icon;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_textMesh = GetComponent<TextMeshProUGUI>();
-    }
 
     // Update is called once per frame
     void Update()

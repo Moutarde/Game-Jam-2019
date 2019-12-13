@@ -6,11 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/UIScene.unity
-    guid: ce43b29ceaa0ae04391bf36c077de46f
-  - enabled: 1
-    path: Assets/Scenes/3DBasicScene.unity
-    guid: 0337bbe1c4137c7439ee903c8a12956d
+    path: Assets/Scenes/Main.unity
+    guid: 483844b508febf141ac4abc5eb4017e7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: a16c1be316fb17945953b9b9ccd8d43f,
       type: 2}
