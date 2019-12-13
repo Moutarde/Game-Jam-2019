@@ -15,7 +15,7 @@ MonoBehaviour:
   m_itemType: 6
   m_clues:
   - m_truthness: 1
-    m_text: Grey Hair
-  - m_truthness: 1
     m_text: Cow boy hat
+  - m_truthness: 0
+    m_text: Bald
   m_sprite: {fileID: 21300000, guid: c53dbe01afb49234893b1a1838b3bbad, type: 3}

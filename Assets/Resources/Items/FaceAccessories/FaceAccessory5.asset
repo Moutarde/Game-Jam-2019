@@ -17,7 +17,7 @@ MonoBehaviour:
   - m_truthness: 1
     m_text: Glasses
   - m_truthness: 1
-    m_text: Mustache
-  - m_truthness: 1
-    m_text: Grey
+    m_text: Grey mustache
+  - m_truthness: 0
+    m_text: Beard
   m_sprite: {fileID: 21300000, guid: b1e163903d4b53c469d6f74bf16ee838, type: 3}

@@ -16,10 +16,6 @@ MonoBehaviour:
   m_clues:
   - m_truthness: 1
     m_text: Top hat
-  - m_truthness: 1
-    m_text: Hat
-  - m_truthness: 1
-    m_text: Grey hair
-  - m_truthness: 1
-    m_text: Black
+  - m_truthness: 0
+    m_text: Bald
   m_sprite: {fileID: 21300000, guid: 2f196c103f1d5f54abc9f3d13fe3df3a, type: 3}

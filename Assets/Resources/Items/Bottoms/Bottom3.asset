@@ -15,11 +15,9 @@ MonoBehaviour:
   m_itemType: 1
   m_clues:
   - m_truthness: 1
-    m_text: Square
-  - m_truthness: 1
-    m_text: Pants
-  - m_truthness: 1
-    m_text: Green
+    m_text: Checked pants
+  - m_truthness: 0
+    m_text: Plain pants
   m_hipsSprite: {fileID: 21300000, guid: 06dd079dcc05afa47b8573ee8a46b158, type: 3}
   m_bottomLegTopLSprite: {fileID: 21300000, guid: 306af95d05cbd2b458ba9ab3241d26f1,
     type: 3}

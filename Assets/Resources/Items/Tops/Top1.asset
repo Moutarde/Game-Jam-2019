@@ -15,13 +15,15 @@ MonoBehaviour:
   m_itemType: 0
   m_clues:
   - m_truthness: 1
-    m_text: Shirt
+    m_text: White shirt
   - m_truthness: 1
-    m_text: White
-  - m_truthness: 1
-    m_text: Tie
-  - m_truthness: 1
-    m_text: Red
+    m_text: Red tie
+  - m_truthness: 0
+    m_text: Striped tee-shirt
+  - m_truthness: 0
+    m_text: Tiebow
+  - m_truthness: 0
+    m_text: Purple shirt
   m_trunkSprite: {fileID: 21300000, guid: 7ccea961aca4db647b48d6d74cbd819d, type: 3}
   m_topLsprite: {fileID: 21300000, guid: 8b6cca57c128bc2428490f227dd0f187, type: 3}
   m_topRsprite: {fileID: 21300000, guid: 9b9a7dcbe668f05499674b4b7fc8f912, type: 3}

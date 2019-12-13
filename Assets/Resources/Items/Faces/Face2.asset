@@ -16,4 +16,10 @@ MonoBehaviour:
   m_clues:
   - m_truthness: 1
     m_text: Surprised
+  - m_truthness: 0
+    m_text: Happy
+  - m_truthness: 0
+    m_text: Sad
+  - m_truthness: 0
+    m_text: Angry
   m_sprite: {fileID: 21300000, guid: 10f29ee85e9a3eb478b140a1094424dc, type: 3}
