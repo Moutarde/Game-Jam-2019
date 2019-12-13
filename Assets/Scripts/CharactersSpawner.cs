@@ -285,7 +285,7 @@ public class CharactersSpawner : MonoBehaviour
         m_zManager.m_playersAndObstacles.Add(newCharacter);
     }
 
-    private void SpawnCharacterV2()
+    private void SpawnFirstCharacter()
     {
         GameObject newCharacter = Instantiate(m_characterPrefab);
         newCharacter.transform.parent = transform;
@@ -310,7 +310,36 @@ public class CharactersSpawner : MonoBehaviour
 
         newCharacter.GetComponent<Character>().InitOrders();
 
-        if (m_characters.Count > 0 && m_characters[0].GetComponent<Character>().HasSameItems(newCharacter.GetComponent<Character>()))
+        m_characters.Add(newCharacter);
+        m_zManager.m_playersAndObstacles.Add(newCharacter);
+    }
+
+    private void SpawnCharacterV3(List<ItemClue> _defClues)
+    {
+        GameObject newCharacter = Instantiate(m_characterPrefab);
+        newCharacter.transform.parent = transform;
+        float randomX = Random.Range(m_xMin, m_xMax);
+        float randomY = Random.Range(m_yMin, m_yMax);
+        newCharacter.transform.localPosition = new Vector3(randomX, randomY, 0.0f);
+
+        List<Item> topList = m_itemsDatabase.GetItems(Item.ItemType.Top);
+        int topIndex = Random.Range(0, topList.Count);
+        TopItem top = (TopItem)topList[topIndex];
+        newCharacter.GetComponent<Character>().AssignTop(top);
+
+        List<Item> bottomList = m_itemsDatabase.GetItems(Item.ItemType.Bottom);
+        int bottomIndex = Random.Range(0, bottomList.Count);
+        BottomItem bottom = (BottomItem)bottomList[bottomIndex];
+        newCharacter.GetComponent<Character>().AssignBottom(bottom);
+
+        AssignHead(Item.ItemType.Head, newCharacter);
+        AssignFace(Item.ItemType.Face, newCharacter);
+        AssignHeadAccessory(Item.ItemType.HeadAccessory, newCharacter);
+        AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
+
+        newCharacter.GetComponent<Character>().InitOrders();
+
+        if (m_characters.Count > 0 && newCharacter.GetComponent<Character>().RespectClues(_defClues))
         {
             // same as the bad guy
             // Debug.Log("Duplicate");
@@ -440,27 +469,21 @@ public class CharactersSpawner : MonoBehaviour
 
     public List<ItemClue> SpawnCharacters(int _charactersCount)
     {
+        SpawnFirstCharacter();
+
+        List<ItemClue> firstCharacterClues = GenerateClues();
+        
         while (m_characters.Count < _charactersCount)
         {
-            SpawnCharacterV2();
+            SpawnCharacterV3(firstCharacterClues);
         }
 
-        /*List<CharactersGroup> charactersGroups = GenerateCharactersGroups();
+        return firstCharacterClues;
+    }
 
-        for (int i = 0; i < charactersGroups.Count; ++i)
-        {
-            SpawnCharactersWithCharactersGroup(charactersGroups[i]);
-        }*/
-
-        List<ItemClue> clues = new List<ItemClue>();
-        clues.Add(new ItemClue(true, "Clue1"));
-        clues.Add(new ItemClue(false, "Clue2"));
-        clues.Add(new ItemClue(true, "Clue3"));
-        clues.Add(new ItemClue(false, "Clue4"));
-        clues.Add(new ItemClue(true, "Clue5"));
-        clues.Add(new ItemClue(false, "Clue6"));
-        clues.Add(new ItemClue(true, "Clue7"));
-        return clues;
+    public List<ItemClue> GenerateClues()
+    {
+        return m_characters[0].GetComponent<Character>().GetClues();
     }
 
     public void SpawnCharactersWithCharactersGroup(CharactersGroup _charactersGroup)

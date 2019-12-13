@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    private TopItem m_top;
+    public TopItem m_top;
     public GameObject m_trunkAnchor;
     private int m_trunkOrder;
     public GameObject m_topLAnchor;
@@ -26,7 +26,7 @@ public class Character : MonoBehaviour
         m_botRAnchor.GetComponent<SpriteRenderer>().sprite = m_top.m_botRsprite;
     }
 
-    private BottomItem m_bottom;
+    public BottomItem m_bottom;
     public GameObject m_hipsAnchor;
     private int m_hipsOrder;
     public GameObject m_bottomLegTopLAnchor;
@@ -53,7 +53,7 @@ public class Character : MonoBehaviour
         m_shoesRAnchor.GetComponent<SpriteRenderer>().sprite = m_bottom.m_shoesRSprite;
     }
 
-    private SimpleItem m_head;
+    public SimpleItem m_head;
     public GameObject m_headAnchor;
     private int m_headOrder;
     public void AssignHead(SimpleItem _head)
@@ -62,7 +62,7 @@ public class Character : MonoBehaviour
         m_headAnchor.GetComponent<SpriteRenderer>().sprite = m_head.m_sprite;
     }
 
-    private SimpleItem m_face;
+    public SimpleItem m_face;
     public GameObject m_faceAnchor;
     private int m_faceOrder;
     public void AssignFace(SimpleItem _face)
@@ -71,7 +71,7 @@ public class Character : MonoBehaviour
         m_faceAnchor.GetComponent<SpriteRenderer>().sprite = m_face.m_sprite;
     }
 
-    private SimpleItem m_headAccessory;
+    public SimpleItem m_headAccessory;
     public GameObject m_headAccessoryAnchor;
     private int m_headAccessoryOrder;
     public void AssignHeadAccessory(SimpleItem _headAccessory)
@@ -80,7 +80,7 @@ public class Character : MonoBehaviour
         m_headAccessoryAnchor.GetComponent<SpriteRenderer>().sprite = m_headAccessory.m_sprite;
     }
 
-    private SimpleItem m_faceAccessory;
+    public SimpleItem m_faceAccessory;
     public GameObject m_faceAccessoryAnchor;
     private int m_faceAccessoryOrder;
     public void AssignFaceAccessory(SimpleItem _faceAccessory)
@@ -133,14 +133,77 @@ public class Character : MonoBehaviour
         m_faceAccessoryAnchor.GetComponent<SpriteRenderer>().sortingOrder = m_faceAccessoryOrder + _order;
     }
 
-    public bool HasSameItems(Character _character)
+    public bool RespectClues(List<ItemClue> _clues)
     {
-        return m_top.IsSameItem(_character.m_top)
-            && m_bottom.IsSameItem(_character.m_bottom)
-            && m_head.IsSameItem(_character.m_head)
-            && m_face.IsSameItem(_character.m_face)
-            && m_headAccessory.IsSameItem(_character.m_headAccessory)
-            && m_faceAccessory.IsSameItem(_character.m_faceAccessory);
+        for (int i = 0; i < _clues.Count; ++i)
+        {
+            if (RespectClue(_clues[i]) == false)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
+    public bool RespectClue(ItemClue _clue)
+    {
+        List<ItemClue> clues = GetClues();
+
+        for (int i = 0; i < clues.Count; ++i)
+        {
+            if (clues[i].m_text == _clue.m_text)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public string GetClue(Item.ItemType _itemType, bool _truthness)
+    {
+        switch (_itemType)
+        {
+            case Item.ItemType.Top:
+                return m_top.GetClue(_truthness);
+                break;
+            case Item.ItemType.Bottom:
+                return m_bottom.GetClue(_truthness);
+                break;
+            case Item.ItemType.Face:
+                return m_face.GetClue(_truthness);
+                break;
+            case Item.ItemType.FaceAccessory:
+                return m_faceAccessory.GetClue(_truthness);
+                break;
+            case Item.ItemType.HeadAccessory:
+                return m_headAccessory.GetClue(_truthness);
+                break;
+        }
+
+        return "";
+    }
+
+    public List<ItemClue> GetClues()
+    {
+        List<ItemClue> allClues = new List<ItemClue>();
+        m_top.AddClues(allClues);
+        m_bottom.AddClues(allClues);
+        m_face.AddClues(allClues);
+        m_faceAccessory.AddClues(allClues);
+        m_headAccessory.AddClues(allClues);
+
+        List<ItemClue> copyClues = new List<ItemClue>(allClues);
+
+        List<ItemClue> returnClues = new List<ItemClue>();
+        for (int i = 0; i < 7; ++i)
+        {
+            int index = Random.Range(0, copyClues.Count);
+            returnClues.Add(copyClues[index]);
+            copyClues.RemoveAt(index);
+        }
+
+        return returnClues;
+    }
 }
