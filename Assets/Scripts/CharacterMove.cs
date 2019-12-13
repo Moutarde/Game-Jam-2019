@@ -16,6 +16,8 @@ public class CharacterMove : MonoBehaviour
     public float m_directionChangeMinDelay;
     public float m_directionChangeMaxDelay;
 
+    private bool m_moving;
+
     private Vector3 m_directionVector;
 
     private float m_directionChangeDelay;
@@ -50,11 +52,15 @@ public class CharacterMove : MonoBehaviour
 
         m_directionChangeDelay = Random.Range(m_directionChangeMinDelay, m_directionChangeMaxDelay);
         m_nextDirectionChangeTime = Time.time + m_directionChangeDelay;
+        m_moving = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!m_moving)
+            return;
+
         bool wasInRightDirection = true;
         if (m_directionVector.x < 0.0f)
         {
@@ -87,6 +93,9 @@ public class CharacterMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!m_moving)
+            return;
+
         string tag = collision.gameObject.tag;
 
         if (tag.Equals("LeftWall"))
@@ -143,5 +152,10 @@ public class CharacterMove : MonoBehaviour
                 GetComponent<Animator>().Play("SetDirRight");
             }
         }
+    }
+
+    public void StopMoving()
+    {
+        m_moving = false;
     }
 }
