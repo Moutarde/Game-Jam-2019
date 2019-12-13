@@ -594,7 +594,7 @@ Transform:
   m_GameObject: {fileID: 3875522910237553832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 1.55, z: 0}
-  m_LocalScale: {x: 0.89299995, y: 2.2203114, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7721672384230701852}
   m_RootOrder: 2
@@ -637,12 +637,12 @@ SpriteRenderer:
   m_SortingLayerID: 711430293
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b4eb75322be7d694db0038282acc1b09, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f86f9f6de6dd8044d89a7e57782b32b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 8.94, y: 8.94}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -665,14 +665,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
-    newSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 8.94, y: 8.94}
+    newSize: {x: 8.94, y: 8.94}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.12, y: 5.12}
+  m_Size: {x: 4.55, y: 11.31}
   m_EdgeRadius: 0
 --- !u!114 &6913738561994009363
 MonoBehaviour:
@@ -686,6 +686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69037adf58047dd4f8bbb3654385c1ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_character: {fileID: 7984091274635958694}
+  m_mover: {fileID: 1765948631}
 --- !u!1 &4125362549981760006
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,11 +818,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd724c88101f3464885312acaa4b9aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_top: {fileID: 0}
   m_trunkAnchor: {fileID: 5037629584235944336}
   m_topLAnchor: {fileID: 2268821594756937619}
   m_topRAnchor: {fileID: 4772763787666674056}
   m_botLAnchor: {fileID: 6833670835493809452}
   m_botRAnchor: {fileID: 2464787860989518425}
+  m_bottom: {fileID: 0}
   m_hipsAnchor: {fileID: 7984091274635958694}
   m_bottomLegTopLAnchor: {fileID: 1442408442772961305}
   m_bottomLegTopRAnchor: {fileID: 3615999569017875295}
@@ -828,9 +832,13 @@ MonoBehaviour:
   m_bottomLegBotRAnchor: {fileID: 6507658010604158042}
   m_shoesLAnchor: {fileID: 4125362549981760006}
   m_shoesRAnchor: {fileID: 4733792973119618787}
+  m_head: {fileID: 0}
   m_headAnchor: {fileID: 3341207315760559864}
+  m_face: {fileID: 0}
   m_faceAnchor: {fileID: 7897535718920568563}
+  m_headAccessory: {fileID: 0}
   m_headAccessoryAnchor: {fileID: 2709334695599923248}
+  m_faceAccessory: {fileID: 0}
   m_faceAccessoryAnchor: {fileID: 1872492354855641555}
 --- !u!50 &1765948635
 Rigidbody2D:
