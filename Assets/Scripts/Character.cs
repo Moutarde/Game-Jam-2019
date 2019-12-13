@@ -152,7 +152,7 @@ public class Character : MonoBehaviour
 
         for (int i = 0; i < clues.Count; ++i)
         {
-            if (clues[i].m_text == _clue.m_text)
+            if (clues[i].m_truthness == _clue.m_truthness && clues[i].m_text == _clue.m_text)
             {
                 return true;
             }
@@ -187,23 +187,40 @@ public class Character : MonoBehaviour
 
     public List<ItemClue> GetClues()
     {
-        List<ItemClue> allClues = new List<ItemClue>();
-        m_top.AddClues(allClues);
-        m_bottom.AddClues(allClues);
-        m_face.AddClues(allClues);
-        m_faceAccessory.AddClues(allClues);
-        m_headAccessory.AddClues(allClues);
+        List<ItemClue> trueClues = new List<ItemClue>();
+        List<ItemClue> falseClues = new List<ItemClue>();
+        m_top.AddClues(trueClues, falseClues);
+        m_bottom.AddClues(trueClues, falseClues);
+        m_face.AddClues(trueClues, falseClues);
+        m_faceAccessory.AddClues(trueClues, falseClues);
+        m_headAccessory.AddClues(trueClues, falseClues);
 
-        List<ItemClue> copyClues = new List<ItemClue>(allClues);
+        List<ItemClue> copyTrueClues = new List<ItemClue>(trueClues);
+        List<ItemClue> copyFalseClues = new List<ItemClue>(falseClues);
 
         List<ItemClue> returnClues = new List<ItemClue>();
-        for (int i = 0; i < 7; ++i)
-        {
-            int index = Random.Range(0, copyClues.Count);
-            returnClues.Add(copyClues[index]);
-            copyClues.RemoveAt(index);
-        }
+        HappenTrueClue(copyTrueClues, returnClues);
+        HappenFalseClue(copyFalseClues, returnClues);
+        HappenTrueClue(copyTrueClues, returnClues);
+        HappenFalseClue(copyFalseClues, returnClues);
+        HappenTrueClue(copyTrueClues, returnClues);
+        HappenFalseClue(copyFalseClues, returnClues);
+        HappenTrueClue(copyTrueClues, returnClues);
 
         return returnClues;
+    }
+
+    public void HappenTrueClue(List<ItemClue> _copyTrueClues, List<ItemClue> _returnClues)
+    {
+        int index = Random.Range(0, _copyTrueClues.Count);
+        _returnClues.Add(_copyTrueClues[index]);
+        _copyTrueClues.RemoveAt(index);
+    }
+
+    public void HappenFalseClue(List<ItemClue> _copyFalseClues, List<ItemClue> _returnClues)
+    {
+        int index = Random.Range(0, _copyFalseClues.Count);
+        _returnClues.Add(_copyFalseClues[index]);
+        _copyFalseClues.RemoveAt(index);
     }
 }

@@ -472,7 +472,7 @@ public class CharactersSpawner : MonoBehaviour
         SpawnFirstCharacter();
 
         List<ItemClue> firstCharacterClues = GenerateClues();
-        
+
         while (m_characters.Count < _charactersCount)
         {
             SpawnCharacterV3(firstCharacterClues);

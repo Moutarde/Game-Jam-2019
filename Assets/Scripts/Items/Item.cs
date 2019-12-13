@@ -49,11 +49,18 @@ public class Item : ScriptableObject
         return false;
     }
 
-    public void AddClues(List<ItemClue> _clues)
+    public void AddClues(List<ItemClue> _trueClues, List<ItemClue> _falseClues)
     {
         for (int i = 0; i < m_clues.Count; ++i)
         {
-            _clues.Add(m_clues[i]);
+            if (m_clues[i].m_truthness)
+            {
+                _trueClues.Add(m_clues[i]);
+            }
+            else
+            {
+                _falseClues.Add(m_clues[i]);
+            }
         }
     }
 }
