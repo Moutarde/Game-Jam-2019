@@ -280,6 +280,7 @@ public class CharactersSpawner : MonoBehaviour
         AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
 
         newCharacter.GetComponent<Character>().InitOrders();
+        newCharacter.GetComponentInChildren<SuspectController>().IsTarget = false;
 
         m_characters.Add(newCharacter);
         m_zManager.m_playersAndObstacles.Add(newCharacter);
@@ -309,6 +310,7 @@ public class CharactersSpawner : MonoBehaviour
         AssignFaceAccessory(Item.ItemType.FaceAccessory, newCharacter);
 
         newCharacter.GetComponent<Character>().InitOrders();
+        newCharacter.GetComponentInChildren<SuspectController>().IsTarget = true;
 
         m_characters.Add(newCharacter);
         m_zManager.m_playersAndObstacles.Add(newCharacter);

@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class SuspectController : MonoBehaviour
 {
+    public bool IsTarget { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,11 +22,5 @@ public class SuspectController : MonoBehaviour
     public void OnKilled()
     {
         GetComponent<SpriteRenderer>().color = Color.red;
-    }
-
-    public bool IsTarget()
-    {
-        //TODO
-        return false;
     }
 }

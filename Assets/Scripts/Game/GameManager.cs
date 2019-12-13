@@ -159,7 +159,7 @@ public class GameManager : MonoBehaviour
     public void HandlePlayerKill(PlayerController player, SuspectController suspect)
     {
         suspect.OnKilled();
-        if (suspect.IsTarget())
+        if (suspect.IsTarget)
         {
             player.AddPoints(m_clueManager.GetCurrentClueScore());
             NextRound();
