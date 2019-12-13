@@ -13,5 +13,4 @@ public class ShootSoundManager : MonoBehaviour
         audioSource.clip = m_shootSounds[index];
         audioSource.Play();
     }
-
 }

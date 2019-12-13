@@ -30,6 +30,12 @@ public class GameManager : MonoBehaviour
     private uint m_currentRound = 0;
     private float m_previousRoundEndTime;
     private bool m_waitingForNextRound;
+
+    public AudioSource m_shootSource;
+
+    public AudioClip m_gotchaSound;
+    public AudioClip m_missSound;
+
     private void Awake()
     {
         if (Instance != null)
@@ -165,11 +171,15 @@ public class GameManager : MonoBehaviour
         if (suspect.IsTarget)
         {
             player.AddPoints(m_clueManager.GetCurrentClueScore());
+            m_shootSource.clip = m_gotchaSound;
+            m_shootSource.Play();
             NextRound();
         }
         else
         {
             player.AddPoints(-m_clueManager.GetCurrentClueScore());
+            m_shootSource.clip = m_missSound;
+            m_shootSource.Play();
         }
 
         m_scores[player.Slot].SetText("Player " + (player.Slot + 1) + ": " + player.Score.ToString());
