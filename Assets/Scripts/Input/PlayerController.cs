@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         if (context.phase == InputActionPhase.Performed)
         {
             _fire = true;
-            _fireTime = Time.time
+            _fireTime = Time.time;
             m_spriteRenderer.color = Color.red;
             GetComponent<ShootSoundManager>().PlayShootSound();
 
