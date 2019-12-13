@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
             _fire = true;
             _fireTime = Time.time;
             GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponent<ShootSoundManager>().PlayShootSound();
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.zero, Mathf.Infinity, LayerMask.GetMask("SuspectHitBox"));
             if (hit.collider != null)
