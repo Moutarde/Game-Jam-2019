@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public AudioClip m_gotchaSound;
     public AudioClip m_missSound;
 
+    public AudioClip m_menuSound;
+    public AudioClip m_gameSound;
+
     private void Awake()
     {
         if (Instance != null)
@@ -67,6 +70,11 @@ public class GameManager : MonoBehaviour
     {
         m_pressStartObject.SetActive(true);
         m_nextRoundObject.SetActive(false);
+
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = m_menuSound;
+        audioSource.pitch = 1.0f;
+        audioSource.Play();
     }
 
     void Update()
@@ -136,7 +144,10 @@ public class GameManager : MonoBehaviour
 
         m_gameStarted = true;
 
-        GetComponent<AudioSource>().Play();
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.clip = m_gameSound;
+        audioSource.pitch = 1.5f;
+        audioSource.Play();
     }
 
     private void BeginNextRound()
@@ -164,6 +175,11 @@ public class GameManager : MonoBehaviour
             m_currentRound = 0;
             m_pressStartObject.SetActive(true);
             m_gameStarted = false;
+
+            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource.clip = m_menuSound;
+            audioSource.pitch = 1.0f;
+            audioSource.Play();
         }
         else
         {
