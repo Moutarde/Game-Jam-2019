@@ -16,7 +16,7 @@ public class CharacterMove : MonoBehaviour
     public float m_directionChangeMinDelay;
     public float m_directionChangeMaxDelay;
 
-    private Direction m_direction;
+    private Vector3 m_directionVector;
 
     private float m_directionChangeDelay;
     private float m_nextDirectionChangeTime;
@@ -24,7 +24,25 @@ public class CharacterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_direction = (Direction)Random.Range((int)Direction.Left, (int)Direction.Top + 1);
+        int index = Random.Range(0, 4);
+        switch (index)
+        {
+            case 0:
+                m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
+                break;
+
+            case 1:
+                m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
+                break;
+
+            case 2:
+                m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
+                break;
+
+            case 3:
+                m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
+                break;
+        }
 
         m_directionChangeDelay = Random.Range(m_directionChangeMinDelay, m_directionChangeMaxDelay);
         m_nextDirectionChangeTime = Time.time + m_directionChangeDelay;
@@ -33,30 +51,12 @@ public class CharacterMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Time.time > m_nextDirectionChangeTime)
-        {
-            ChangeDirectionRandomly();
-        }
+        float xOffset = Random.Range(-0.2f, 0.2f);
+        float yOffset = Random.Range(-0.2f, 0.2f);
+        m_directionVector = new Vector3(m_directionVector.x + xOffset, m_directionVector.y + yOffset, 0.0f);
+        m_directionVector = Vector3.Normalize(m_directionVector);
 
-        Vector3 move = new Vector3(0.0f, 0.0f, 0.0f);
-
-        switch (m_direction)
-        {
-            case Direction.Left:
-                move.x = -1.0f;
-                break;
-            case Direction.Right:
-                move.x = 1.0f;
-                break;
-            case Direction.Top:
-                move.y = 1.0f;
-                break;
-            case Direction.Bottom:
-                move.y = -1.0f;
-                break;
-        }
-
-        transform.localPosition = transform.localPosition + move * m_speed * Time.deltaTime;
+        transform.localPosition = transform.localPosition + m_directionVector * m_speed * Time.deltaTime;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -65,19 +65,19 @@ public class CharacterMove : MonoBehaviour
 
         if (tag.Equals("LeftWall"))
         {
-            GoInGivenDirection(Direction.Right);
+            m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
         }
         else if (tag.Equals("RightWall"))
         {
-            GoInGivenDirection(Direction.Left);
+            m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
         }
         else if (tag.Equals("TopWall"))
         {
-            GoInGivenDirection(Direction.Bottom);
+            m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
         }
         else if (tag.Equals("BottomWall"))
         {
-            GoInGivenDirection(Direction.Top);
+            m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
         }
         else
         {
@@ -94,43 +94,20 @@ public class CharacterMove : MonoBehaviour
 
             if (-45.0f < angle && angle <= 45.0f)
             {
-                GoInGivenDirection(Direction.Left);
+                m_directionVector = new Vector3(-1.0f, 0.0f, 0.0f);
             }
             else if (45.0f < angle && angle <= 135.0f)
             {
-                GoInGivenDirection(Direction.Bottom);
+                m_directionVector = new Vector3(0.0f, -1.0f, 0.0f);
             }
             else if (135.0f < angle || angle <= -135.0)
             {
-                GoInGivenDirection(Direction.Right);
+                m_directionVector = new Vector3(1.0f, 0.0f, 0.0f);
             }
             else if (-135.0f < angle || angle <= -45.0)
             {
-                GoInGivenDirection(Direction.Top);
+                m_directionVector = new Vector3(0.0f, 1.0f, 0.0f);
             }
         }
-    }
-
-    void ChangeDirectionRandomly()
-    {
-        Direction newDirection = Direction.Left;
-
-        do
-        {
-            newDirection = (Direction)Random.Range((int)Direction.Left, (int)Direction.Top + 1);
-        } while (newDirection == m_direction);
-
-        m_direction = newDirection;
-
-        m_directionChangeDelay = Random.Range(m_directionChangeMinDelay, m_directionChangeMaxDelay);
-        m_nextDirectionChangeTime = Time.time + m_directionChangeDelay;
-    }
-
-    void GoInGivenDirection(Direction _direction)
-    {
-        m_direction = _direction;
-
-        m_directionChangeDelay = Random.Range(m_directionChangeMinDelay, m_directionChangeMaxDelay);
-        m_nextDirectionChangeTime = Time.time + m_directionChangeDelay;
     }
 }
