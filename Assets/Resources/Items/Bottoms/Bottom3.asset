@@ -21,7 +21,7 @@ MonoBehaviour:
     type: 3}
   m_bottomLegBotLSprite: {fileID: 21300000, guid: 1fb7f5bdbb8c73349852aaf2f55f35ed,
     type: 3}
-  m_bottomLegBotRSprite: {fileID: 21300000, guid: 79d5b9246c1103d44bd2f422b219c33e,
+  m_bottomLegBotRSprite: {fileID: 21300000, guid: f903a0f6f954dd2479e04028a29b862f,
     type: 3}
   m_shoesLSprite: {fileID: 21300000, guid: 3bd2e25c63243eb4a9851f67c19f42f4, type: 3}
   m_shoesRSprite: {fileID: 21300000, guid: ededf4472c42bad47948e108a66f3052, type: 3}
