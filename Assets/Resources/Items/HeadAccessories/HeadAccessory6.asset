@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: HeadAccessory6
   m_EditorClassIdentifier: 
   m_itemType: 6
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Brown Hair
+  - m_truthness: 1
+    m_text: Hat
+  - m_truthness: 1
+    m_text: Cap
   m_sprite: {fileID: 21300000, guid: de64211a84605f646b8e5255ded79a46, type: 3}

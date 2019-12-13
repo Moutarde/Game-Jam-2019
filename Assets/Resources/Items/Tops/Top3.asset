@@ -17,7 +17,7 @@ MonoBehaviour:
   - m_truthness: 1
     m_text: Striped
   - m_truthness: 1
-    m_text: Shirt
+    m_text: Tee-shirt
   m_trunkSprite: {fileID: 21300000, guid: 156b7ab38d7ac214f91d7e3bb5f8dc5b, type: 3}
   m_topLsprite: {fileID: 21300000, guid: fa899a6522c40f843b2f4f68e2e078e5, type: 3}
   m_topRsprite: {fileID: 21300000, guid: f00dc5820b403944da7fbad3c30235d5, type: 3}

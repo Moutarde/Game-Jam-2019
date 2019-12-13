@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Bottom4
   m_EditorClassIdentifier: 
   m_itemType: 1
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Grey
+  - m_truthness: 1
+    m_text: Striped
+  - m_truthness: 1
+    m_text: Pants
   m_hipsSprite: {fileID: 21300000, guid: 7fcb11d4e5a887949b4b2c473e3ed8d7, type: 3}
   m_bottomLegTopLSprite: {fileID: 21300000, guid: 337f71f28c1171d46a461c103efca138,
     type: 3}

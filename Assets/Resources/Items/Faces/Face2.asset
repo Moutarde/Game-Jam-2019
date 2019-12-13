@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Face2
   m_EditorClassIdentifier: 
   m_itemType: 3
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Surprised
   m_sprite: {fileID: 21300000, guid: 10f29ee85e9a3eb478b140a1094424dc, type: 3}

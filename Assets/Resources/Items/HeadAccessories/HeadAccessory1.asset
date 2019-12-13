@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: HeadAccessory1
   m_EditorClassIdentifier: 
   m_itemType: 6
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Bald
   m_sprite: {fileID: 21300000, guid: 29b3e8083c4c78847859f3c40c1a0748, type: 3}

@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: HeadAccessory3
   m_EditorClassIdentifier: 
   m_itemType: 6
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Black Hair
+  - m_truthness: 1
+    m_text: Wick
   m_sprite: {fileID: 21300000, guid: b48435d8176b8bd4b9634916476e5fe2, type: 3}

@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Face3
   m_EditorClassIdentifier: 
   m_itemType: 3
-  m_clues: []
+  m_clues:
+  - m_truthness: 1
+    m_text: Angry
   m_sprite: {fileID: 21300000, guid: 7e71f2bfdb14cc54c8c63503a791f5e3, type: 3}
