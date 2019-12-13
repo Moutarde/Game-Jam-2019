@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12cb36d46f2e0a34ebbe77d5e4b72996, type: 3}
+  m_Name: Bottom4
+  m_EditorClassIdentifier: 
+  m_itemType: 1
+  m_clues: []
+  m_hipsSprite: {fileID: 21300000, guid: 7fcb11d4e5a887949b4b2c473e3ed8d7, type: 3}
+  m_bottomLegTopLSprite: {fileID: 21300000, guid: 337f71f28c1171d46a461c103efca138,
+    type: 3}
+  m_bottomLegTopRSprite: {fileID: 21300000, guid: 5a1e739a644ad4d4caa01c9aa846ba64,
+    type: 3}
+  m_bottomLegBotLSprite: {fileID: 21300000, guid: d5409fc689e80f649bf6b7da54d39cf8,
+    type: 3}
+  m_bottomLegBotRSprite: {fileID: 21300000, guid: 567a4c089393eea42bd7113564eb1161,
+    type: 3}
+  m_shoesLSprite: {fileID: 21300000, guid: 18fc893ad58d40c4ba6338f3ed06663f, type: 3}
+  m_shoesRSprite: {fileID: 21300000, guid: 96f0f73224b67984c86044a95e0145e0, type: 3}
